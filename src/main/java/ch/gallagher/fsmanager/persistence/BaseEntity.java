@@ -1,9 +1,12 @@
 package ch.gallagher.fsmanager.persistence;
 
+import lombok.Getter;
+
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.util.UUID;
 
+@Getter
 @MappedSuperclass
 public abstract class BaseEntity {
 
