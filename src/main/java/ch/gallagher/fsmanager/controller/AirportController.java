@@ -3,15 +3,12 @@ package ch.gallagher.fsmanager.controller;
 import ch.gallagher.fsmanager.persistence.Airport;
 import ch.gallagher.fsmanager.repository.AirportRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin("*")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/airports")
@@ -21,15 +18,24 @@ public class AirportController {
 
     @GetMapping
     public List<Airport> getAll() {
-        return List.of(Airport.builder().name("ORD").build());
+        return airportRepository.findAll();
     }
 
     @Transactional
-    @GetMapping("add")
-    public Airport addAirport() {
-        Airport airport = Airport.builder().name("ORD").build();
-        airport = airportRepository.save(airport);
-        return airport;
+    @PostMapping
+    public @ResponseBody Airport addAirport(@RequestBody Airport airport) {
+        return airportRepository.save(airport);
+    }
+
+    @Transactional
+    @PutMapping
+    public @ResponseBody Airport updateAirport(@RequestBody Airport airport) {
+        return airportRepository.save(airport);
+    }
+
+    @GetMapping("{id}")
+    public Airport getById(@PathVariable String id){
+            return airportRepository.getById(id);
     }
 
     @Transactional
