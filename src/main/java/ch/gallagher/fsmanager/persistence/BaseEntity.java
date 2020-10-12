@@ -4,6 +4,7 @@ import lombok.Getter;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 import java.util.UUID;
 
 @Getter
@@ -16,4 +17,7 @@ public abstract class BaseEntity {
 
     @Id
     private String id;
+
+    @Version
+    private Long version;
 }
