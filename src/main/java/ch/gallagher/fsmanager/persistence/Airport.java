@@ -12,4 +12,6 @@ import javax.persistence.Entity;
 @Entity
 public class Airport extends BaseEntity {
     private String name;
+    private String iata;
+    private String icao;
 }
