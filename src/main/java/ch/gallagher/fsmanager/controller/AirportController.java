@@ -34,9 +34,16 @@ public class AirportController {
     }
 
     @GetMapping("{id}")
-    public Airport getById(@PathVariable String id){
+    public @ResponseBody Airport getById(@PathVariable String id){
             return airportRepository.getById(id);
     }
+
+    @DeleteMapping("{id}")
+    public void deletetById(@PathVariable String id){
+        airportRepository.deleteById(id);
+    }
+
+
 
     @Transactional
     @GetMapping("deleteAll")
